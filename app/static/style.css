@@ -1,0 +1,30 @@
+body {
+	/* background-color: red; */
+}
+
+.form-wrapper {
+	/* outline: solid red 3px; */
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	background-color: #F5F5F5;
+}
+
+.paragraph {
+	/* outline: solid red 3px; */
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	background-color: white;
+}
+
+.register-wrapper {
+	/* outline: salmon 2px solid; */
+	border: none;
+}

@@ -1,0 +1,164 @@
+<div class="form-wrapper border-solid border-2 outline-grey-800 rounded-lg">
+  <form
+    class="space-y-8 divide-y divide-gray-200"
+    action=""
+    method="post"
+    novalidate
+  >
+  {{ register_form.hidden_tag() }}
+    <div class="space-y-8 divide-y divide-gray-200">
+      <div>
+        <div class="pt-1">
+          <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+              Aanmelden
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">
+              Deze gegevens worden opgevraagd door de Gemeente Utrecht om een
+              afspraak te maken. Als er voor jou een afspraak is geboekt via
+              deze applicatie, dan krijg jij de bevestigingsmail van de
+              Gemeente!
+            </p>
+          </div>
+          <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div class="sm:col-span-3">
+              <label
+                for="first_name"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Voornaam
+              </label>
+              <div class="mt-1">
+                <!-- <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"> -->
+                {{ register_form.first_name(autocomplete="given-name", class="shadow-sm
+                focus:ring-indigo-500 focus:border-indigo-500 block w-full
+                sm:text-sm border-gray-300 rounded-md") }} {% for error in
+					register_form.first_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label
+                for="last_name"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Achternaam
+              </label>
+              <div class="mt-1">
+                <!-- <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"> -->
+                {{ register_form.last_name(autocomplete="family-name", class="shadow-sm
+                focus:ring-indigo-500 focus:border-indigo-500 block w-full
+                sm:text-sm border-gray-300 rounded-md") }} {% for error in
+					register_form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="sm:col-span-6">
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700"
+              >
+                E-mailadres
+              </label>
+              <div class="mt-1">
+                <!-- <input id="email" name="email" type="email" autocomplete="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"> -->
+                {{ register_form.email(autocomplete="email", class="shadow-sm
+                focus:ring-indigo-500 focus:border-indigo-500 block w-full
+                sm:text-sm border-gray-300 rounded-md") }} {% for error in
+					register_form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="sm:col-span-6">
+              <label
+                for="date_of_birth"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Geboortedatum
+              </label>
+              <div class="mt-1">
+                <!-- <input type="text" name="date_of_birth" id="date_of_birth" autocomplete="date_of_birth" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"> -->
+                {{ register_form.date_of_birth(id="date_of_birth",
+                autocomplete="date_of_birth", class="shadow-sm
+                focus:ring-indigo-500 focus:border-indigo-500 block w-full
+                sm:text-sm border-gray-300 rounded-md") }} {% for error in
+					register_form.date_of_birth.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="sm:col-span-6">
+              <label
+                for="phone"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Mobiel telefoonnummer (moet beginnen met 06, bijvoorbeeld 0612345678)
+              </label>
+              <div class="mt-1">
+                <!-- <input type="text" name="phone" id="phone" autocomplete="phone" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"> -->
+				{{ register_form.phone(id="phone", autocomplete="phone", class="shadow-sm
+                focus:ring-indigo-500 focus:border-indigo-500 block w-full
+                sm:text-sm border-gray-300 rounded-md") }} {% for error in
+					register_form.phone.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+              </div>
+			</div>
+			
+			<div class="sm:col-span-6">
+				<label for="id_type" class="block text-sm font-medium text-gray-700"> Welke legitimatie wil je aanvragen/verlengen? </label>
+				<div class="mt-1">
+					{{ register_form.id_type(class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md") }}
+					{% for error in register_form.id_type.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="sm:col-span-6">
+				<label for="location" class="block text-sm font-medium text-gray-700"> Op welke locatie wil je de afspraak? </label>
+				<div class="mt-1">
+					{{ register_form.location(class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md") }}
+					{% for error in register_form.id_type.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="sm:col-span-6">
+				<div class="flex items-center">
+					{{ register_form.agree_to_terms(id="agree_to_terms", class="focus:ring-violet-500 h-6 w-6 text-violet-600 border-gray-300") }}
+					<label for="agree_to_terms" class="ml-3 block text-sm font-medium text-gray-700"> 
+						Hierbij ga ik akkoord met het feit dat <b>ikwilmijnlegitimatie.nl</b> voor mij een afspraak aanmaakt bij de Gemeente.
+						Ik ben zelf volledig verantwoordelijk voor de afspraak zodra deze is aangemaakt.
+					</label>
+				</div>
+				{% for error in register_form.agree_to_terms.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class=" register-wrapper">
+        <div class="flex justify-center">
+          <!-- <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button> -->
+          <!-- <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button> -->
+          {{ register_form.submit(class="ml-3 inline-flex justify-center py-2 px-32 border
+          border-transparent shadow-sm text-sm font-medium rounded-md text-white
+          bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2
+          focus:ring-offset-2 focus:ring-violet-500") }}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

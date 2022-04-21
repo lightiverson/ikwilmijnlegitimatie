@@ -1,0 +1,19 @@
+<div class="paragraph sm:col-span-6">
+	<div class="mt-1">
+	  {% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		  {% for message in messages %}
+		  <p class="mt-1 text-2xl text-violet-500 italic">{{ message }}</p>
+
+		  {% if 'Je huidige positie in de wachtlijst voor de' in message %}
+		  <p class="mt-1 text-base text-violet-500 italic">
+			  Je kan je huidige positie opvragen onder het kopje <b>Positie in de wachtlijst</b>.
+			Als er voor jou een afspraak geboekt is, krijg je de afspraaksbevestiging van de Gemeente in je email.
+			<b>Houd je email dus goed in de gaten!</b>
+		</p>
+		{% endif %}
+		  {% endfor %}
+	  {% endif %}
+	  {% endwith %}
+	</div>
+  </div>

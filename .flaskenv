@@ -1,0 +1,2 @@
+FLASK_APP=ikwilmijnlegitimatie.py
+FLASK_ENV=development
