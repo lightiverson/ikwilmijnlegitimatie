@@ -8,11 +8,11 @@ class Utrecht(db.Model):
 	For appointments in Stadskantoor, Stadsplateau 1, Utrecht.
 	"""
 	id = db.Column(db.Integer, primary_key=True)					# primary key uniquely identifies each record in table
-	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)	# unique does the same as primary key
-	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
+	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)	# unique does the same as primary key
+	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
 	email = db.Column(db.String(Config.MAX_EMAIL_LENGTH), index=True, unique=True)
-	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
-	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH), index=True)
+	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
+	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH_ENCRYPTED), index=True)
 	id_type = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	location = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	registered_at = db.Column(db.DateTime, index=True)
@@ -26,11 +26,11 @@ class Vleuten(db.Model):
 	For appointments in Wijkservicecentrum Vleuten - De Meern, Dorpsplein 1, Vleuten.
 	"""
 	id = db.Column(db.Integer, primary_key=True)					# primary key uniquely identifies each record in table
-	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)	# unique does the same as primary key
-	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
+	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)	# unique does the same as primary key
+	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
 	email = db.Column(db.String(Config.MAX_EMAIL_LENGTH), index=True, unique=True)
-	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
-	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH), index=True)
+	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
+	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH_ENCRYPTED), index=True)
 	id_type = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	location = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	registered_at = db.Column(db.DateTime, index=True)
@@ -57,11 +57,11 @@ class ProblemUsers(db.Model):
 	This table saves people for which the bot had problems booking the appointment.
 	"""
 	id = db.Column(db.Integer, primary_key=True)					# primary key uniquely identifies each record in table
-	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)	# unique does the same as primary key
-	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
+	first_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)	# unique does the same as primary key
+	last_name = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
 	email = db.Column(db.String(Config.MAX_EMAIL_LENGTH), index=True, unique=True)
-	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
-	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH), index=True)
+	date_of_birth = db.Column(db.String(Config.MAX_NAME_LENGTH_ENCRYPTED), index=True)
+	phone = db.Column(db.String(Config.MAX_PHONE_LENGTH_ENCRYPTED), index=True)
 	id_type = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	location = db.Column(db.String(Config.MAX_NAME_LENGTH), index=True)
 	registered_at = db.Column(db.DateTime, index=True)

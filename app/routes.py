@@ -83,9 +83,6 @@ def index():
 		
 
 	if position_form.submit_position.data and position_form.validate():
-		print("position form!")
-		print(position_form.submit_position.data)
-		print(position_form.validate())
 
 		positions = utils.get_user_position(position_form.email.data)
 		if positions["Utrecht"] == -1 and positions["Vleuten"] == -1:
@@ -110,8 +107,11 @@ def index():
 
 		# Find user in table (also decrypt user date of birth for comparison with date of birth from the form)
 		user = db_table.query.filter_by(email=delete_me_form.email.data).first()
+		print(user.date_of_birth)
+		print(type(user.date_of_birth))
+
 		if user != None:
-			user_date_of_birth_decrypted = Config.fernet.decrypt(user.date_of_birth).decode()
+			user_date_of_birth_decrypted = Config.fernet.decrypt(user.date_of_birth.encode()).decode()	# when receiving the data back from mysql, we get it back as a string, decrypt() want bytes, so encode it.
 		else:
 			user_date_of_birth_decrypted = ""
 
