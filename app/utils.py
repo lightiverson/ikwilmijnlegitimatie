@@ -16,10 +16,16 @@ def get_user_position(email: str):
 	Returns a dictionary of positions of the user.
 	Something like:
 	{"Utrecht": 4, "Vleuten": -1}
-	This means that that specific email is registered for Utrecht (position 4) and not registered for Vleuten.
+	This means that that specific email is registered in Utrecht (position 4) and not registered in Vleuten.
+
+	Also returns a dictionary with id_types of the user.
+	Something like:
+	{"Utrecht": "Paspoort", "Vleuten": None}
+	This means that that specific email is registered in Utrecht for a Paspoort and not registered in Vleuten.
 	"""
 
 	positions = {"Utrecht": 0, "Vleuten": 0}
+	id_types = {"Utrecht": None, "Vleuten": None}
 
 	# First find the active tables of that email: Utrecht, Vleuten
 	try:
@@ -39,6 +45,7 @@ def get_user_position(email: str):
 		for user in utrecht_all_data:
 			positions["Utrecht"] += 1
 			if user.email == email:
+				id_types["Utrecht"] = user.id_type
 				break
 
 	# Vleuten position
@@ -52,9 +59,10 @@ def get_user_position(email: str):
 		for user in vleuten_all_data:
 			positions["Vleuten"] += 1
 			if user.email == email:
+				id_types["Vleuten"] = user.id_type
 				break
 
-	return positions
+	return positions, id_types
 
 
 def request_protected(session: requests.Session, method: str, url: str, **kwargs) -> requests.Response:
