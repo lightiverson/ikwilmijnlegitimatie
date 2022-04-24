@@ -13,6 +13,8 @@
 		<p style="color:Blue;">{{ log }}</p>
 	{% elif 'Deleted' in log %}
 		<p style="color:orange;">{{ log }}</p>
+	{% else %}
+		<p style="color:black;">{{ log }}</p>
 	{% endif %}
 
 {% endfor %}
