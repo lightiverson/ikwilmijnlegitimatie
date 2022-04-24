@@ -2,21 +2,29 @@
 <html>
     <head>
       <title>ikwilmijnlegitimatie</title>
-	  <!-- Dev import van tailwindcss -->
+	  <!-- Dev import from tailwindcss -->
 	  <script src="https://cdn.tailwindcss.com"></script>
 
-	  <!-- import van eigen css -->
+	  <!-- import from own css -->
 	  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
 		{% include "flash_current_position.html" %}
 		{% include 'introduction.html' %}
 		{% include 'how_it_works.html' %}
-		{% include 'privacy.html' %}
+		{% include 'locations.html' %}
+		{% include 'appointment_gemeente.html' %}
+		{% include 'people_in_waitlist.html' %}
+		{% include 'total_people_helped.html' %}
 		{% include 'register_form.html' %}
 		{% include 'position_in_queue.html' %}
 		{% include 'delete_me_form.html' %}
+		{% include 'message_for_gemeente.html' %}
+		{% include 'privacy.html' %}
+		{% include 'responsibility.html' %}
+		{% include 'your_input.html' %}
+		{% include 'questions.html' %}
 		{% include 'about_me.html' %}
-
+		{% include 'about_ikwilmijnlegitimatie.html' %}
     </body>
 </html>

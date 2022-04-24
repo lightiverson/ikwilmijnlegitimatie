@@ -32,7 +32,7 @@ def create_user():
 	user_datastore.create_user(email=Config.ADMIN_EMAIL, password=hash_password(Config.ADMIN_PASSWORD))
 	db.session.commit()
 
-class BotLogsView(BaseView):
+class UtrechtBotLogsView(BaseView):
 	"""
 	Logs page of Adminpage.
 	"""
@@ -41,21 +41,51 @@ class BotLogsView(BaseView):
 
 	@expose('/')
 	def index(self):
-		todays_logs_utrecht_filename = f"{basedir}/app/templates/admin/logs/bot_utrecht_{str(datetime.now().date())}.log"
-		todays_logs_vleuten_filename = f"{basedir}/app/templates/admin/logs/bot_vleuten_{str(datetime.now().date())}.log"
+		todays_logs_utrecht_filename = f"{basedir}/logs/bot/utrecht_{str(datetime.now().date())}.log"
 		try:
 			with open(todays_logs_utrecht_filename, "r") as f:
 				utrecht_log_contents: List[str] = f.readlines()
 		except FileNotFoundError:
 			utrecht_log_contents = [f"No log files for Utrecht for {str(datetime.now().date())}"]
 
+		return self.render("admin/utrecht_bot_logs.html", utrecht_log_contents=utrecht_log_contents, date=str(datetime.now().date()))
+
+class VleutenBotLogsView(BaseView):
+	"""
+	Logs page of Adminpage.
+	"""
+	def is_accessible(self):
+		return current_user.is_active and current_user.is_authenticated
+
+	@expose('/')
+	def index(self):
+		todays_logs_vleuten_filename = f"{basedir}/logs/bot/vleuten_{str(datetime.now().date())}.log"
 		try:
 			with open(todays_logs_vleuten_filename, "r") as f:
 				vleuten_log_contents: List[str] = f.readlines()
 		except FileNotFoundError:
 			vleuten_log_contents = [f"No log files for Vleuten for {str(datetime.now().date())}"]
 
-		return self.render("admin/logs.html", utrecht_log_contents=utrecht_log_contents, vleuten_log_contents=vleuten_log_contents, date=str(datetime.now().date()))
+		return self.render("admin/vleuten_bot_logs.html", vleuten_log_contents=vleuten_log_contents, date=str(datetime.now().date()))
+
+
+class DatabaseLogsView(BaseView):
+	"""
+	Logs page of Adminpage containing database logs.
+	"""
+	def is_accessible(self):
+		return current_user.is_active and current_user.is_authenticated
+
+	@expose('/')
+	def index(self):
+		database_logs_filename = f"{basedir}/logs/database/db.log"
+		try:
+			with open(database_logs_filename, "r") as f:
+				database_log_contents: List[str] = f.readlines()
+		except FileNotFoundError:
+			database_log_contents = [f"No log files for database interactions."]
+		return self.render("admin/database_logs.html", database_log_contents=database_log_contents)
+
 
 class MyHomeView(AdminIndexView):
 	"""
@@ -91,5 +121,7 @@ admin.add_view(AdminModelView(models.Utrecht, db.session, name="Utrecht", endpoi
 admin.add_view(AdminModelView(models.Vleuten, db.session, name="Vleuten", endpoint='vleuten'))
 admin.add_view(AdminModelView(models.HelpedUsers, db.session, name="Helpedusers", endpoint='helpedusers'))
 admin.add_view(AdminModelView(models.ProblemUsers, db.session, name="Problemusers", endpoint='problemusers'))
-admin.add_view(BotLogsView(name='Logs', endpoint='logs'))
+admin.add_view(UtrechtBotLogsView(name='UtrechtBotLogs', endpoint='utrecht_bot_logs'))
+admin.add_view(VleutenBotLogsView(name='VleutenBotLogs', endpoint='vleuten_bot_logs'))
+admin.add_view(DatabaseLogsView(name='DatabaseLogs', endpoint='db_logs'))
 

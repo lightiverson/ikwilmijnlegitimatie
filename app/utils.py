@@ -91,3 +91,8 @@ def request_protected(session: requests.Session, method: str, url: str, **kwargs
 		logger.error(f"OTHER ERROR: {err}")
 	return response
 
+class LimitReached(Exception):
+	"""
+	Raise this exception when the limit of people is reached.
+	"""
+	pass

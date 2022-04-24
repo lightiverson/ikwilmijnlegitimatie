@@ -1,0 +1,20 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+<h1>Database logs</h1>
+{% for log in database_log_contents %}
+	
+	{% if 'ERROR' in log %}
+		<p style="color:red;">{{ log }}</p>
+	{% elif 'Added' in log %}
+		<p style="color:green;">{{ log }}</p>
+	{% elif 'Asked' in log %}
+		<p style="color:Blue;">{{ log }}</p>
+	{% elif 'Deleted' in log %}
+		<p style="color:orange;">{{ log }}</p>
+	{% endif %}
+
+{% endfor %}
+
+{% endblock %}

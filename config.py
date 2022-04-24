@@ -55,3 +55,6 @@ class Config(object):
 
 	# For usage tracking
 	TRACK_USAGE_INCLUDE_OR_EXCLUDE_VIEWS = "include"
+
+	# Days to check ahead with the bot
+	DAYS = 7

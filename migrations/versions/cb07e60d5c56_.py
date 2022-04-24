@@ -1,8 +1,8 @@
-"""initial migration
+"""empty message
 
-Revision ID: b7977ed8cc3d
+Revision ID: cb07e60d5c56
 Revises: 
-Create Date: 2022-04-21 16:03:03.885020
+Create Date: 2022-04-24 16:21:57.062663
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b7977ed8cc3d'
+revision = 'cb07e60d5c56'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,11 +34,11 @@ def upgrade():
     op.create_index(op.f('ix_helped_users_registered_at'), 'helped_users', ['registered_at'], unique=False)
     op.create_table('problem_users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('first_name', sa.String(length=64), nullable=True),
-    sa.Column('last_name', sa.String(length=64), nullable=True),
+    sa.Column('first_name', sa.String(length=256), nullable=True),
+    sa.Column('last_name', sa.String(length=256), nullable=True),
     sa.Column('email', sa.String(length=128), nullable=True),
-    sa.Column('date_of_birth', sa.String(length=64), nullable=True),
-    sa.Column('phone', sa.String(length=10), nullable=True),
+    sa.Column('date_of_birth', sa.String(length=256), nullable=True),
+    sa.Column('phone', sa.String(length=256), nullable=True),
     sa.Column('id_type', sa.String(length=64), nullable=True),
     sa.Column('location', sa.String(length=64), nullable=True),
     sa.Column('registered_at', sa.DateTime(), nullable=True),
@@ -57,7 +57,7 @@ def upgrade():
     sa.Column('name', sa.String(length=80), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('permissions', sa.UnicodeText(), nullable=True),
-    sa.Column('update_datetime', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
+    sa.Column('update_datetime', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -76,8 +76,8 @@ def upgrade():
     sa.Column('tf_primary_method', sa.String(length=64), nullable=True),
     sa.Column('tf_totp_secret', sa.String(length=255), nullable=True),
     sa.Column('tf_phone_number', sa.String(length=128), nullable=True),
-    sa.Column('create_datetime', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
-    sa.Column('update_datetime', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
+    sa.Column('create_datetime', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('update_datetime', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.Column('username', sa.String(length=255), nullable=True),
     sa.Column('us_totp_secrets', sa.Text(), nullable=True),
     sa.Column('us_phone_number', sa.String(length=128), nullable=True),
@@ -88,11 +88,11 @@ def upgrade():
     )
     op.create_table('utrecht',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('first_name', sa.String(length=64), nullable=True),
-    sa.Column('last_name', sa.String(length=64), nullable=True),
+    sa.Column('first_name', sa.String(length=256), nullable=True),
+    sa.Column('last_name', sa.String(length=256), nullable=True),
     sa.Column('email', sa.String(length=128), nullable=True),
-    sa.Column('date_of_birth', sa.String(length=64), nullable=True),
-    sa.Column('phone', sa.String(length=10), nullable=True),
+    sa.Column('date_of_birth', sa.String(length=256), nullable=True),
+    sa.Column('phone', sa.String(length=256), nullable=True),
     sa.Column('id_type', sa.String(length=64), nullable=True),
     sa.Column('location', sa.String(length=64), nullable=True),
     sa.Column('registered_at', sa.DateTime(), nullable=True),
@@ -108,11 +108,11 @@ def upgrade():
     op.create_index(op.f('ix_utrecht_registered_at'), 'utrecht', ['registered_at'], unique=False)
     op.create_table('vleuten',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('first_name', sa.String(length=64), nullable=True),
-    sa.Column('last_name', sa.String(length=64), nullable=True),
+    sa.Column('first_name', sa.String(length=256), nullable=True),
+    sa.Column('last_name', sa.String(length=256), nullable=True),
     sa.Column('email', sa.String(length=128), nullable=True),
-    sa.Column('date_of_birth', sa.String(length=64), nullable=True),
-    sa.Column('phone', sa.String(length=10), nullable=True),
+    sa.Column('date_of_birth', sa.String(length=256), nullable=True),
+    sa.Column('phone', sa.String(length=256), nullable=True),
     sa.Column('id_type', sa.String(length=64), nullable=True),
     sa.Column('location', sa.String(length=64), nullable=True),
     sa.Column('registered_at', sa.DateTime(), nullable=True),

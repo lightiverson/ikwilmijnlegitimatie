@@ -1,0 +1,22 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+<h1>Bot logs Vleuten for {{ date }}</h1>
+{% for log in vleuten_log_contents %}
+	
+	{% if 'ERROR' in log %}
+		<p style="color:red;">{{ log }}</p>
+	{% elif 'SUCCESS' in log %}
+		<p style="color:green;">{{ log }}</p>
+	{% else %}
+		<p style="color:black;">{{ log }}</p>
+	{% endif %}
+
+	{% if 'SUCCESS' in log %}
+		<br>
+	{% endif %}
+
+{% endfor %}
+
+{% endblock %}
