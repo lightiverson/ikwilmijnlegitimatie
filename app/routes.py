@@ -4,7 +4,7 @@ from datetime import datetime
 # Third party packages
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for
-from loguru import logger
+# from loguru import logger
 
 # Self-defined packages
 from app import app, db
@@ -21,8 +21,8 @@ from flask_track_usage.storage.sql import SQLStorage
 pstore = SQLStorage(db=db)
 t = TrackUsage(app, [pstore])
 
-# Setup logger for database exceptions
-logger.add(f"logs/database/db.log", retention=None, level="TRACE")
+# # Setup logger for database exceptions
+# logger.add(f"logs/database/db.log", retention=None, level="TRACE")
 
 @t.include
 @app.route("/", methods=["GET", "POST"])
@@ -71,7 +71,7 @@ def index():
 				raise utils.LimitReached
 			db.session.add(user)
 			db.session.commit()
-			logger.trace(f"Added: {email} for {location}.")
+			# logger.trace(f"Added: {email} for {location}.")
 			flash_message = f"Bedankt voor je registratie voor een {register_form.id_type.data} op locatie {register_form.location.data}! Je huidige positie in de wachtlijst is {position}."
 		except utils.LimitReached:
 			flash_message = f"Het maximum aantal mensen ({Config.MAX_PEOPLE}) is al aangemeld. Probeer het later opnieuw."
@@ -79,7 +79,7 @@ def index():
 			flash_message = f"Deze email is bij ons al bekend voor een aanvraag op locatie {register_form.location.data}."
 		except Exception as err:
 			flash_message = f"Oeps, er is een probleem met de webapplicatie. Geen stress, ik ben ermee bezig. Probeer het later opnieuw!"
-			logger.error(f"DATABASE_ERROR: {err}.")
+			# logger.error(f"DATABASE_ERROR: {err}.")
 
 		flash(flash_message)
 		return redirect(url_for("index"))
@@ -87,7 +87,7 @@ def index():
 
 	if position_form.submit_position.data and position_form.validate():
 
-		logger.trace(f"Asked: {position_form.email.data} for position.")
+		# logger.trace(f"Asked: {position_form.email.data} for position.")
 		positions, id_types = utils.get_user_position(position_form.email.data)
 		if positions["Utrecht"] == -1 and positions["Vleuten"] == -1:
 			flash_message = f"De ingevoerde emailadres is niet bekend bij ons. Probeer het opnieuw!"
@@ -125,10 +125,10 @@ def index():
 			try:
 				db.session.delete(user)
 				db.session.commit()
-				logger.trace(f"Deleted: {delete_me_form.email.data} for {delete_me_form.location.data}.")
+				# logger.trace(f"Deleted: {delete_me_form.email.data} for {delete_me_form.location.data}.")
 			except:
 				flash_message = f"Oeps, er is een probleem met de webapplicatie. Geen stress, ik ben ermee bezig. Probeer het later opnieuw!"
-				logger.error(f"DATABASE_ERROR: {delete_me_form.email.data} - {delete_me_form.location.data}.")
+				# logger.error(f"DATABASE_ERROR: {delete_me_form.email.data} - {delete_me_form.location.data}.")
 			flash_message = f"Je bent uitgeschreven op locatie {delete_me_form.location.data} met email {delete_me_form.email.data}. Jammer..."
 		flash(flash_message)
 		return redirect(url_for("index"))

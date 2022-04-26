@@ -3,6 +3,7 @@ ENV
 .vscode/
 app.db
 bot.py
+ikwilmijnlegitimatie_video_final.mp4
 logs/
 utrecht_bot_configuration.txt
 utrecht_bot_service_templates.txt
